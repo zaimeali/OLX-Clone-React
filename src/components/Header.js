@@ -16,9 +16,9 @@ export default function Header() {
         <nav className="header flex">
             <Logo />
             <div className="location flex">
-                <SearchIcon className="icon__location" />
+                <SearchIcon className="icon__location icons" />
                 <input className="input__location" placeholder="Pakistan" />
-                <button className="button__location">
+                <button className="button__location icons">
                     <ExpandMoreIcon />
                 </button>
             </div>
@@ -28,15 +28,17 @@ export default function Header() {
                     className="searchText__product" 
                     placeholder="Find Cars, Mobile Phones and more..." 
                 />
-                <SearchIcon />
+                <div className="searchText__buttonDiv">
+                    <SearchIcon className="searchText__button" />
+                </div>
             </div>
             <div className="header__buttons flex">
-                <button>
+                <Link className="loginBtn" to="/">
                     Login
-                </button>
-                <button>
+                </Link>
+                <button className="sellBtn">
                     <AddIcon />
-                    SELL
+                    <span className="sellBtnText">SELL</span>
                 </button>
             </div>
         </nav>

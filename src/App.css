@@ -1,9 +1,124 @@
 .flex {
   display: flex;
+  justify-content: space-evenly;
 }
 
 .header {
+  padding: 10px 5%;
+  background-color: #f7f8f9;
+}
+
+.location {
+  position: relative;
+  border-radius: 4px;
+  box-sizing: border-box;
+  border: 2px solid #002f34;
+}
+
+.location .icons {
+  position: absolute;
+}
+
+.icon__location {
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.input__location {
+  padding-left: 35px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.input__location::placeholder {
+  font-size: 14px;
+}
+
+.button__location {
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  width: 40px;
+  height: 40px;
 }
 
 .search__product {
+  position: relative;
+  border: 2px solid #002f34;
+  border-radius: 4px;
+  box-sizing: border-box;
+  height: 50px;
+}
+
+.search__product .searchText__product {
+  width: 400px;
+  color: #002f34;
+  border: none;
+  outline: none;
+  padding: 0 0 0 10px;
+  font-size: 16px;
+}
+
+.search__product .searchText__product::placeholder {
+  font-size: 14px;
+}
+
+.search__product .searchText__buttonDiv {
+  position: absolute;
+  right: -2px;
+  cursor: pointer;
+  background-color: #002f34;
+  /* border-radius: 0 4px 4px 0; */
+  height: 100%;
+  width: 50px;
+  display: flex;
+}
+
+.search__product .searchText__buttonDiv .searchText__button {
+  justify-content: center;
+  /* align-items: center; */
+  margin: 0 auto;
+  height: 100%;
+  /* width: 30px; */
+  color: white;
+  /* margin: 0 5px; */
+}
+
+.header__buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 150px;
+}
+
+.header__buttons .loginBtn {
+  color: #002f34;
+  font-weight: 600;
+  border-bottom: 2px solid #002f34;
+}
+
+.loginBtn:hover {
+  border-bottom: none;
+  text-decoration:none; 
+  outline:none;
+  padding-bottom: 2px;
+}
+
+.header__buttons .sellBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid #002f34;
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+
+.header__buttons .sellBtn .sellBtnText {
+  color: #002f34;
 }
