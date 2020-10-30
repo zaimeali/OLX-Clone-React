@@ -3,31 +3,42 @@ import React from 'react'
 // React Router
 import { Link } from 'react-router-dom'
 
-// Components
-import Navigation from './Navigation'
+// Logo
+import { ReactComponent as Logo } from './../img/olx-logo.svg';
 
-// Bootstrap
-import { Navbar, Form, InputGroup, FormControl } from 'react-bootstrap'
+// Icons
+import SearchIcon from '@material-ui/icons/Search';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import AddIcon from '@material-ui/icons/Add';
 
 export default function Header() {
     return (
-        <Navbar className="bg-light justify-content-between">
-            <Form inline>
-                <InputGroup>
-                    <FormControl 
-                        placeholder="Pakistan"
-                    />
-                </InputGroup>
-            </Form>
-            <ul>
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
-                <li>
-                    <Link to="/about">About</Link>
-                </li>
-            </ul>
-            <Navigation />
-        </Navbar>
+        <nav className="header flex">
+            <Logo />
+            <div className="location flex">
+                <SearchIcon className="icon__location" />
+                <input className="input__location" placeholder="Pakistan" />
+                <button className="button__location">
+                    <ExpandMoreIcon />
+                </button>
+            </div>
+            <div className="search__product flex">
+                <input 
+                    type="text" 
+                    className="searchText__product" 
+                    placeholder="Find Cars, Mobile Phones and more..." 
+                />
+                <SearchIcon />
+            </div>
+            <div className="header__buttons flex">
+                <button>
+                    Login
+                </button>
+                <button>
+                    <AddIcon />
+                    SELL
+                </button>
+            </div>
+        </nav>
     )
 }
