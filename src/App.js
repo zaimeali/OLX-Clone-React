@@ -9,11 +9,15 @@ import {
 // Components
 import Header from './components/Header';
 import Navigation from './components/Navigation';
+import Categories from './components/Categories';
+import Banner from './components/Banner';
 
 function App() {
   return (
     <Router>
         <Header />
+        <Categories />
+        <Banner />
         <Navigation />
     </Router>
   );

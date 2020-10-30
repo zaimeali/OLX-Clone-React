@@ -3,6 +3,8 @@
   justify-content: space-evenly;
 }
 
+
+/* Header Start */
 .header {
   padding: 10px 5%;
   background-color: #f7f8f9;
@@ -122,3 +124,65 @@
 .header__buttons .sellBtn .sellBtnText {
   color: #002f34;
 }
+
+/* Header End */
+
+
+/* Category Start */
+
+.allCategories__Text {
+  font-weight: 600;
+  font-size: 14px;
+  color: #002f34;
+}
+
+.allCategories__Btn {
+  border: none;
+  background: none;
+  outline: none;
+  color: #002f34;
+}
+
+.allCategories__Btn:focus {
+  outline: 0;
+}
+
+.category__items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.category__item {
+  background: none;
+  border: none;
+  outline: none;
+  color: #002f34;
+  padding: 0 5px;
+  font-size: 13px;
+}
+
+.category__item:hover {
+  border: none;
+  outline: none;
+  text-decoration:none; 
+}
+
+/* Category End */
+
+
+/* Banner Start */
+
+.bannerDiv {
+  width: 100%;
+}
+
+.bannerDiv img {
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: cover;
+  height: 170px;
+}
+
+/* Banner End */
