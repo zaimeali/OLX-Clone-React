@@ -130,6 +130,11 @@
 
 /* Category Start */
 
+.categoryDiv {
+  /* padding: 0 125px; */
+  /* justify-content: space-between !important; */
+}
+
 .allCategories__Text {
   font-weight: 600;
   font-size: 14px;
@@ -186,3 +191,53 @@
 }
 
 /* Banner End */
+
+
+/* Ads Start */
+
+.ad_Div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.ad_block {
+  width: 400px;
+  height: 100px;
+  background-color: rgb(230, 230, 230);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ad__Text {
+  color: gray;
+}
+
+/* Ads End */
+
+
+/* Main Container Start */
+
+.main__container {
+  /* display: flex;
+  flex-direction: row; */
+  padding: 0 35px;
+}
+
+/* Main Container End */
+
+
+/* Card Items */
+
+.card__wrapper {
+
+}
+
+.card__image {
+  height: 200px;
+}
+
+
+/* Card Items End */

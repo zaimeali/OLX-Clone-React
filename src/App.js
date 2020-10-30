@@ -11,6 +11,7 @@ import Header from './components/Header';
 import Navigation from './components/Navigation';
 import Categories from './components/Categories';
 import Banner from './components/Banner';
+import Ads from './components/Ads'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Header />
         <Categories />
         <Banner />
+        <Ads />
         <Navigation />
     </Router>
   );
