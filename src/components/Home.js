@@ -17,7 +17,7 @@ export default function Home() {
             title: 'Body massager 2 speed',
             price: 2500,
             location: "Qadri Colony, Lahore",
-            isFeatured: false,
+            isFeatured: true,
         },
         {
             img: 'https://apollo-singapore.akamaized.net:443/v1/files/c27mo73ugckv-PK/image;s=272x0',
@@ -31,7 +31,7 @@ export default function Home() {
             title: 'Center Table',
             price: 18800,
             location: "Mohlanwal Road, Lahore",
-            isFeatured: false,
+            isFeatured: true,
         },
         {
             img: 'https://apollo-singapore.akamaized.net:443/v1/files/vi3zy24xq2672-PK/image;s=272x0',
