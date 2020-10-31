@@ -5,17 +5,24 @@ import { Card } from 'react-bootstrap'
 // Styles
 import '../App.css'
 
-export default function Item({ Image, Price, Title, Place, Time }) {
+export default function Item({ Image, Price, Title, Place, Time, IsFeatured }) {
+
+    const formatter = new Intl.NumberFormat('en-US', {
+        maximumSignificantDigits: 3,
+        // style: 'currency',
+        // currency: 'PKR',
+    });
+
     return (
         <Grid item xs={ 3 }>
             <Card className="card__wrapper">
-                <Card.Img className="card__image" alt={ Title } src={ Image } />
+                <div className="card__image__div">
+                    <Card.Img className="card__image" alt={ Title } src={ Image } />
+                </div>
                 <Card.Body>
-                    <Card.Title>{ Title }</Card.Title>
-                    <Card.Text>
-                        This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.
-                    </Card.Text>
+                    <Card.Title className="card__price">Rs.{ formatter.format(Price) }</Card.Title>
+                    <Card.Text className="card__title">{ Title }</Card.Text>
+                    <small className="text-muted card__place">{ Place }</small>
                 </Card.Body>
                 {/*<Card.Footer>
                     <small className="text-muted">Last updated 3 mins ago</small>
