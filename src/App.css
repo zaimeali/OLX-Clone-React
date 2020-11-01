@@ -139,6 +139,7 @@
   font-weight: 600;
   font-size: 14px;
   color: #002f34;
+  cursor: pointer;
 }
 
 .allCategories__Btn {
@@ -150,6 +151,46 @@
 
 .allCategories__Btn:focus {
   outline: 0;
+}
+
+.category__dd {
+  position: relative;
+}
+
+.category__dropdown {
+  position: absolute;
+  left: -80px;
+  z-index: 2;
+  background-color: hsl(0, 0%, 100%);
+  width: 1000px;
+  border: 1px solid rgb(226, 226, 226);
+  border-radius: 5px;
+  /* display: flex; */
+}
+
+.category__cardColumns {
+  /* width: 100%;
+  display: flex; */
+  padding: 10px 15px;
+}
+
+.category__card {
+  display: flex;
+  border: none !important;
+}
+
+.category__list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.category__li {
+  text-align: left;
+  color: #002f34;
+  font-size: 11px;
+  cursor: pointer;
+  /* background-color: violet; */
+  width: 80%;
 }
 
 .category__items {

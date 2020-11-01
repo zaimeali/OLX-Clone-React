@@ -10,6 +10,10 @@ import '../App.css'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 
+// Components
+import CategoryItems from './CategoryItems';
+
+
 export default function Categories() {
 
     const category = [
@@ -26,11 +30,12 @@ export default function Categories() {
 
     return (
         <div className="categoryDiv flex">
-            <div>
-                <span className="allCategories__Text">All Categories</span>
-                <button className="allCategories__Btn" onClick={ () => setIsOpen(!isOpen) }>
+            <div className="category__dd">
+                <span onClick={ () => setIsOpen(!isOpen) } className="allCategories__Text">All Categories</span>
+                <button onBlur={ () => setIsOpen(false) } className="allCategories__Btn" onClick={ () => setIsOpen(!isOpen) }>
                     { isOpen ? <ExpandLessIcon /> : <ExpandMoreIcon /> }
                 </button>
+                { isOpen && <CategoryItems /> }
             </div>
             <div className="category_items">
                 { category.map((item, index) => (
