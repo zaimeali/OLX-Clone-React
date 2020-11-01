@@ -25,7 +25,7 @@ export default function Item({ Image, Price, Title, Place, Time, IsFeatured }) {
     });
 
     return (
-        <Grid item xs={ 6 } sm={ 3 }>
+        <Grid item xs={ 12 } sm={ 6 } md={ 3 }>
             <Card className="card__wrapper">
                 { IsFeatured && <span className="card__featured__tag">Featured</span> }
                 { 

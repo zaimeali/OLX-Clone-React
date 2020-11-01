@@ -57,13 +57,11 @@ export default function Footer() {
             <div className="smallFooter">
                 <div className="copyright">
                     <span className="cp__heading">Other Countries</span>
-                    <span>India&nbsp;-&nbsp;</span>
-                    <span>South Africa&nbsp;-&nbsp;</span>
-                    <span>Indonesia</span>
+                    <span className="cp_ft_text">India - South Africa - Indonesia</span>
                 </div>
                 <div className="copyright">
                     <span className="cp__heading">Free Classifieds in Pakistan</span>
-                    <span>&copy; 2006-2020 OLX</span>
+                    <span className="cp_ft_text">&copy; 2006-2020 OLX</span>
                 </div>
             </div>
         </footer>
