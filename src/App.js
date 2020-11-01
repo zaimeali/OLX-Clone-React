@@ -12,6 +12,7 @@ import Navigation from './components/Navigation';
 import Categories from './components/Categories';
 import Banner from './components/Banner';
 import Ads from './components/Ads'
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Banner />
         <Ads />
         <Navigation />
+        <Footer />
     </Router>
   );
 }
