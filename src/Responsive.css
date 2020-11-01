@@ -2,6 +2,12 @@
 
 @media (max-width: 769px)
 {
+
+    .category__dropdown {
+        width: 800px !important;
+        left: -30px !important;
+    }
+
     .header {
         width: 100%;
         padding: 10px 5px;
@@ -39,6 +45,11 @@
 
     .category_items {
         display: none !important;
+    }
+
+    .category__dropdown {
+        width: 400px !important;
+        left: -120px !important;
     }
 
     .bannerDiv img {
@@ -102,6 +113,11 @@
 {
     .social__icons {
         flex-direction: column !important;
+    }
+
+    .category__dropdown {
+        width: 400px !important;
+        left: -90px !important;
     }
 }
 /* Media Query End */
