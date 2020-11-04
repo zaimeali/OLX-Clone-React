@@ -104,6 +104,8 @@
 .header__buttons .loginBtn {
   color: #002f34;
   font-weight: 600;
+  border: none;
+  background: none;
   border-bottom: 2px solid #002f34;
 }
 
@@ -112,6 +114,16 @@
   text-decoration:none; 
   outline:none;
   padding-bottom: 2px;
+}
+
+.loginBtn:focus {
+  outline: none;
+}
+
+.loginBtn:active {
+  border: none;
+  border-bottom: 2px solid #002f34;
+  outline: none;
 }
 
 .header__buttons .sellBtn {
@@ -471,3 +483,64 @@
 }
 
 /* Back to Top end */
+
+
+/* Login */
+
+.loginModal__wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  z-index: 99;
+  align-items: center;
+  justify-content: center;
+}
+
+.close__LoginModal {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  outline: none;
+  border: none;
+}
+
+.close__LoginBtn {
+  color: red;
+}
+
+.close__LoginBtn:hover {
+  color: rgb(138, 40, 40);
+}
+
+.loginBox {
+  height: 300px;
+  width: 300px;
+  background-color: #f5f5f5;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  z-index: 100;
+  transform: translate(-50%, -50%);
+
+  border-radius: 10px;
+
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+  box-shadow:         0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* margin: auto 0; */
+  height: 100%;
+}
+
+/* Login End */

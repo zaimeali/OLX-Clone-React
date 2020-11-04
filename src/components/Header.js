@@ -1,7 +1,7 @@
 import React from 'react'
 
 // React Router
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 // Logo
 import { ReactComponent as Logo } from './../img/olx-logo.svg';
@@ -11,7 +11,15 @@ import SearchIcon from '@material-ui/icons/Search';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AddIcon from '@material-ui/icons/Add';
 
-export default function Header() {
+export default function Header({ isLogin, setLogin }) {
+
+    if(isLogin) {
+        document.getElementById('overflow__hide').style.overflow = "hidden";
+    }
+    else {
+        document.getElementById('overflow__hide').style.overflow = "auto";
+    }
+
     return (
         <nav className="header flex">
             <Logo />
@@ -33,9 +41,9 @@ export default function Header() {
                 </div>
             </div>
             <div className="header__buttons flex">
-                <Link className="loginBtn" to="/">
+                <button className="loginBtn" onClick={() => setLogin(!isLogin)}>
                     Login
-                </Link>
+                </button>
                 <button className="sellBtn">
                     <AddIcon />
                     <span className="sellBtnText">SELL</span>

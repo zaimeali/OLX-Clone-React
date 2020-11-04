@@ -14,10 +14,13 @@ import Banner from './components/Banner';
 import Ads from './components/Ads'
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
+import Login from './components/Login';
 
 function App() {
 
   const [showScroll, setShowScroll] = useState(false);
+
+  const [loginBox, setLoginBox] = useState(true);
 
   const checkScrollTop = () => {    
       if (!showScroll && window.pageYOffset > 200){
@@ -30,7 +33,8 @@ function App() {
 
   return (
     <Router>
-        <Header />
+        <Header isLogin={ loginBox } setLogin={ setLoginBox } />
+        { loginBox && <Login setLogin={ setLoginBox } /> }
         <Categories />
         { showScroll && <BackToTop /> }
         <Banner />
