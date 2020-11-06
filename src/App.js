@@ -33,6 +33,12 @@ function App() {
 
   return (
     <Router>
+        { loginBox && 
+          <div className="loginModal__wrapper" 
+            onClick={ () => setLoginBox(false) }
+            onBlur={ () => setLoginBox(false) }
+          /> 
+        }
         <Header isLogin={ loginBox } setLogin={ setLoginBox } />
         { loginBox && <Login setLogin={ setLoginBox } /> }
         <Categories />

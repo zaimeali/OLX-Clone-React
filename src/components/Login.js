@@ -1,8 +1,4 @@
-import React from 'react'
-
-// Formik and Yup
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
+import React, { useState } from 'react'
 
 // React Redux
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,73 +8,44 @@ import '../App.css'
 
 // Icons
 import CloseIcon from '@material-ui/icons/Close';
+import LoginForm from './LoginForm';
+import Register from './Register';
+
+// Components
 
 
 export default function Login({ setLogin }) {
 
+    const [ifUser, setIfUser] = useState(true)
+
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
-    console.log(user)
 
-    const formik = useFormik({
-        initialValues: {
-            email: '',
-            password: '', 
-        },
-        validationSchema: Yup.object({
-            email: Yup.string()
-                .email('Invalid email address')
-                .required('Email is required'),
-            password: Yup.string()
-                .required('Password is required')
-                .min(8, 'Password has to be longer than 8 characters!') ,
-        }),
-        onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
-        },
-    })
+    const signUpText = 'Create an account?'
+    const signInText = 'Have an account?'
 
     return (
         <div 
-            className="loginModal__wrapper"
-            onClick={ () => setLogin(false) }
+            // className="loginModal__wrapper"
+            // onClick={ () => setLogin(false) }
+            // onBlur={ () => setLogin(false) }
         >
-            <div className="loginBox">
+            <div 
+                className="loginBox"
+                onBlur={ () => setLogin(false) }
+            >
                 <button className="close__LoginModal" onClick={ () => setLogin(false) }>
                     <CloseIcon className="close__LoginBtn" />
                 </button>
-                <form 
-                    className="loginForm"
-                    onSubmit={ formik.handleSubmit }
-                >
-                    <label htmlFor="email">Email Address</label>
-                    <input 
-                        id="email"
-                        name="email"
-                        type="email"
-                        onChange={ formik.handleChange }
-                        onBlur={ formik.handleBlur }
-                        value={ formik.values.email }
-                        required={ true }
-                    />
-                    { formik.touched.email && <div className="form-field-error">{ formik.errors.email }</div> }
-                    
-                    <label htmlFor="password">Password</label>
-                    <input 
-                        id="password"
-                        name="password"
-                        type="password"
-                        onChange={ formik.handleChange }
-                        onBlur={ formik.handleBlur }
-                        value={ formik.values.password }
-                        required={ true }
-                        minLength={ 8 }
-                        maxLength={ 32 }
-                    />
-                    { formik.touched.password && <div className="form-field-error">{ formik.errors.password }</div> }
-                    
-                    <button type="submit">Submit</button>
-                </form>
+                { ifUser ? <LoginForm /> : <Register /> }
+                <div className="loginOptions">
+                    <p 
+                        onClick={ () => setIfUser(!ifUser) }
+                    >
+                        { ifUser ? signUpText : signInText }
+                    </p>
+                    <p>Sign in with Google</p>
+                </div>
             </div>
         </div>
     )
