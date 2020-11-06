@@ -1,16 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+// Styling
 import './index.css';
+
+// Component
 import App from './App';
+
+// Redux
+import { Provider } from 'react-redux'
+// import { configureStore } from '@reduxjs/toolkit'
+// import userReducer from './redux/reducer'
+import store from './redux/store'
+
+// PWA File
 import * as serviceWorker from './serviceWorker';
 
 // Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// const store = configureStore({
+//   reducer: userReducer,
+// })
+
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={ store }>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 

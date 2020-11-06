@@ -4,6 +4,9 @@ import React from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
+// React Redux
+import { useDispatch, useSelector } from 'react-redux'
+
 // Styles
 import '../App.css'
 
@@ -12,6 +15,10 @@ import CloseIcon from '@material-ui/icons/Close';
 
 
 export default function Login({ setLogin }) {
+
+    const dispatch = useDispatch()
+    const user = useSelector(state => state.user)
+    console.log(user)
 
     const formik = useFormik({
         initialValues: {
