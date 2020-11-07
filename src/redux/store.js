@@ -8,7 +8,7 @@ const reducer = combineReducers({
     user,
 })
 
-console.log(reducer)
+// console.log(reducer)
 
 const store = configureStore({
     reducer,

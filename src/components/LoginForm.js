@@ -33,8 +33,9 @@ export default function LoginForm() {
             className="loginForm"
             onSubmit={ formik.handleSubmit }
         >
-            <label htmlFor="email">Email Address</label>
-            <input 
+            {/* <label htmlFor="email">Email Address</label> */}
+            <input
+                className="form-fields" 
                 id="email"
                 name="email"
                 type="email"
@@ -42,11 +43,13 @@ export default function LoginForm() {
                 // onBlur={ formik.handleBlur }
                 value={ formik.values.email }
                 required={ true }
+                placeholder="Email"
             />
             { formik.touched.email && <div className="form-field-error">{ formik.errors.email }</div> }
 
-            <label htmlFor="password">Password</label>
-            <input 
+            {/* <label htmlFor="password">Password</label> */}
+            <input
+                className="form-fields" 
                 id="password"
                 name="password"
                 type="password"
@@ -56,10 +59,19 @@ export default function LoginForm() {
                 required={ true }
                 minLength={ 8 }
                 maxLength={ 32 }
+                placeholder="Password"
             />
             { formik.touched.password && <div className="form-field-error">{ formik.errors.password }</div> }
 
-            <button type="submit">Submit</button>
+            <button 
+                disabled={formik.isValid} 
+                type="submit" 
+                className={ 
+                    `form__Btn ${
+                        (formik.values.password.length && formik.values.email.length) ? 
+                            'form_Btn_Active' : 'form_Btn_Disable'}` 
+                }
+            >Sign in</button>
         </form>
     )
 }

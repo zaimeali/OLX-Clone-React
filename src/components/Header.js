@@ -11,7 +11,26 @@ import SearchIcon from '@material-ui/icons/Search';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AddIcon from '@material-ui/icons/Add';
 
+// React Redux
+import { useDispatch, useSelector } from 'react-redux'
+
+// Components
+import SignIn from './SignIn';
+
+
+const LoginButton = ({ isLogin, setLogin }) => {
+    return (
+        <button className="loginBtn" onClick={() => setLogin(!isLogin)}>
+            Login
+        </button>
+    )
+}
+
 export default function Header({ isLogin, setLogin }) {
+
+
+    const dispatch = useDispatch()
+    const user = useSelector(state => state.user)
 
     if(isLogin) {
         document.getElementById('overflow__hide').style.overflow = "hidden";
@@ -41,9 +60,7 @@ export default function Header({ isLogin, setLogin }) {
                 </div>
             </div>
             <div className="header__buttons flex">
-                <button className="loginBtn" onClick={() => setLogin(!isLogin)}>
-                    Login
-                </button>
+                { user.user ? <SignIn /> : <LoginButton isLogin={ isLogin } setLogin={ setLogin } /> }
                 <button className="sellBtn">
                     <AddIcon />
                     <span className="sellBtnText">SELL</span>
