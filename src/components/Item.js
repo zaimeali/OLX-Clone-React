@@ -38,7 +38,7 @@ export default function Item({ Image, Price, Title, Place, Time, IsFeatured }) {
                         </span> 
                 }
                 <div className="card__image__div">
-                    <Card.Img className="card__image" alt={ Title } src={ Image } />
+                    <Card.Img style={{ objectFit: "cover", }} className="card__image" alt={ Title } src={ Image } />
                 </div>
                 <Card.Body className="card__body">
                     <Card.Title className="card__price">Rs.{ formatter.format(Price) }</Card.Title>
