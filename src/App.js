@@ -20,7 +20,7 @@ function App() {
 
   const [showScroll, setShowScroll] = useState(false);
 
-  const [loginBox, setLoginBox] = useState(true);
+  const [loginBox, setLoginBox] = useState(false);
 
   const checkScrollTop = () => {    
       if (!showScroll && window.pageYOffset > 200){

@@ -16,12 +16,20 @@ import Register from './Register';
 
 // Components
 
-// firebase
-// import firebase from 'firebase'
-// import '../firebase/firebase'
+// Firebase
+import firebase from 'firebase'
+import '../firebase/firebase'
+
+// Redux
+import { useDispatch } from 'react-redux'
+
+// Action
+import { login } from './LoginForm'
 
 
 export default function Login({ setLogin }) {
+
+    const dispatch = useDispatch()
 
     // const loggedInUserCheck = ({ email, password }) => {
     //     firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
@@ -31,27 +39,6 @@ export default function Login({ setLogin }) {
     //         console.log(errorMessage, errorCode)
     //     });
     // }
-
-    const googleSignIn = () => {
-        // let provider = new firebase.auth.GoogleAuthProvider();
-        // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-        // firebase.auth().signInWithPopup(provider).then(function(result) {
-        //     // This gives you a Google Access Token. You can use it to access the Google API.
-        //     var token = result.credential.accessToken;
-        //     // The signed-in user info.
-        //     var user = result.user;
-        //     // ...
-        // }).catch(function(error) {
-        //     // Handle Errors here.
-        //     var errorCode = error.code;
-        //     var errorMessage = error.message;
-        //     // The email of the user's account used.
-        //     var email = error.email;
-        //     // The firebase.auth.AuthCredential type that was used.
-        //     var credential = error.credential;
-        //     // ...
-        // });
-    }
 
     const [ifUser, setIfUser] = useState(true)
     const [createAccountMessage, setCreateAccountMessage] = useState("")
@@ -73,6 +60,35 @@ export default function Login({ setLogin }) {
 
     const signInHead = 'Login'
     const signUpHead = 'Register'
+
+
+    const googleSignIn = () => {
+        let provider = new firebase.auth.GoogleAuthProvider();
+        // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            // var token = result.credential.accessToken;
+            // console.log("Token: ", token)
+            // The signed-in user info.
+            var user = result.user;
+            // console.log("User: ", user)
+            dispatch(login({
+                user: user.displayName
+            }))
+            setLogin(false)
+            // ...
+        }).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.error(errorMessage, errorCode)
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            console.error(email, credential)
+        });
+    }
 
     return (
         <div 
@@ -108,7 +124,7 @@ export default function Login({ setLogin }) {
                     <p 
                         className="loginOptions__navigate"
                         onClick={ googleSignIn }
-                    >Sign { ifUser ? 'in' : 'up' } with Google</p>
+                    >Sign in with Google</p>
                 </div>
             </div>
         </div>

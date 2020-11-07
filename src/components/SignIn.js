@@ -45,6 +45,16 @@ export default function SignIn() {
     
     const user = useSelector(state => state.user)
 
+    let usernameUnClean = user.user
+    let username = ''
+    if(usernameUnClean.includes(" ")){
+        let userArr = usernameUnClean.split(" ")
+        username = userArr[0]
+    }
+    else {
+        username = usernameUnClean
+    }
+
     const [isLogOut, setIsLogOut] = useState(false)
 
     return (
@@ -53,7 +63,8 @@ export default function SignIn() {
                 className="userLoggedIn"
                 onClick={ () => setIsLogOut(!isLogOut) }
             >
-                { user.user }
+                {/* console.log(user.user.includes(" ")) */}
+                { username }
             </span>
             { isLogOut && <PopUp /> }
         </span>
