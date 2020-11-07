@@ -12,11 +12,11 @@ import '../App.css'
 
 export const logout = () => async dispatch => {
     try {
-        console.log("pressed")
+        // console.log("pressed")
         return dispatch(logoutSuccess())
     }
     catch (e) {
-        return console.log("Error in logout: ", e)
+        return console.error("Error in logout: ", e)
     }
 }
 
@@ -35,7 +35,7 @@ export default function SignIn() {
     
     const user = useSelector(state => state.user)
 
-    const [isLogOut, setIsLogOut] = useState(true)
+    const [isLogOut, setIsLogOut] = useState(false)
 
     return (
         <span className="logoutSection">

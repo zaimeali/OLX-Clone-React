@@ -12,7 +12,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AddIcon from '@material-ui/icons/Add';
 
 // React Redux
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 // Components
 import SignIn from './SignIn';
@@ -28,8 +28,6 @@ const LoginButton = ({ isLogin, setLogin }) => {
 
 export default function Header({ isLogin, setLogin }) {
 
-
-    const dispatch = useDispatch()
     const user = useSelector(state => state.user)
 
     if(isLogin) {

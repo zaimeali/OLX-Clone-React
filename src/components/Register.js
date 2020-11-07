@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 // Formik and Yup
 import { useFormik } from 'formik'
@@ -7,8 +7,32 @@ import * as Yup from 'yup'
 // Styling
 import '../App.css'
 
+// Firebase
+import firebase from 'firebase'
+import '../firebase/firebase'
 
-export default function Register() {
+
+export default function Register({ setIfUser, setCreateAccountMessage }) {
+
+    const [registerError, setRegisterError] = useState('')
+
+    const registerUser = ({ email, password }, resetForm) => {
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(() => {
+                setCreateAccountMessage("Created Successfully")
+                setIfUser(true);
+                resetForm()
+            })
+            .catch(function(error) {
+                // Handle Errors here.
+                let errorCode = error.code;
+                let errorMessage = error.message;
+                console.log(errorMessage, errorCode)
+                setRegisterError(errorMessage)
+                resetForm()
+            }
+        );
+    }
 
     const formik = useFormik({
         initialValues: {
@@ -29,15 +53,21 @@ export default function Register() {
                     then: Yup.string().oneOf([Yup.ref("password")], "Password doesn't match")
                 }),
         }),
-        onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
+        onSubmit: (values, { resetForm }) => {
+            registerUser(values, resetForm)
+            // alert(JSON.stringify(values, null, 2));
         },
     })
 
     return (
         <form 
             className="loginForm"
-            onSubmit={ formik.handleSubmit }
+            method="post"
+            onSubmit={ (e) => {
+                e.preventDefault()
+                formik.handleSubmit()
+                
+            } }
         >
             {/* <label htmlFor="email">Email Address</label> */}
             <input 
@@ -85,8 +115,9 @@ export default function Register() {
             />
             { formik.touched.confirmPassword && <div className="form-field-error">{ formik.errors.confirmPassword }</div> }
 
+            <span className="loginError">{ registerError }</span>
+
             <button 
-                disabled={formik.isValid}
                 type="submit" 
                 className={ 
                     `form__Btn ${

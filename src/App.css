@@ -667,8 +667,18 @@
   /* box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75); */
 }
 
+.createAccountMessage {
+  color: green;
+  font-size: 12px;
+}
+
 .logoutSection {
   position: relative;
+}
+
+.loginError {
+  color: red;
+  font-size: 12px;
 }
 
 /* User Logged In End */

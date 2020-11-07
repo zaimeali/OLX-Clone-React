@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // React Redux
 // import { useDispatch, useSelector } from 'react-redux'
@@ -23,6 +23,15 @@ import Register from './Register';
 
 export default function Login({ setLogin }) {
 
+    // const loggedInUserCheck = ({ email, password }) => {
+    //     firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+    //         // Handle Errors here.
+    //         var errorCode = error.code;
+    //         var errorMessage = error.message;
+    //         console.log(errorMessage, errorCode)
+    //     });
+    // }
+
     const googleSignIn = () => {
         // let provider = new firebase.auth.GoogleAuthProvider();
         // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
@@ -45,6 +54,14 @@ export default function Login({ setLogin }) {
     }
 
     const [ifUser, setIfUser] = useState(true)
+    const [createAccountMessage, setCreateAccountMessage] = useState("")
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setCreateAccountMessage("")
+        }, 3000)
+        return () => clearTimeout(timer);
+    }, [createAccountMessage])
 
     // const dispatch = useDispatch()
     // const user = useSelector(state => state.user)
@@ -67,15 +84,19 @@ export default function Login({ setLogin }) {
                 className="loginBox"
                 // onBlur={ () => setLogin(false) }
             >
-                <button className="close__LoginModal" onClick={ () => setLogin(false) }>
+                <button className="close__LoginModal" onClick={ () => {
+                    setLogin(false)
+                    setCreateAccountMessage("")
+                } }>
                     <CloseIcon className="close__LoginBtn" />
                 </button>
                 <Logo />
+                <span className="createAccountMessage">{ createAccountMessage }</span>
                 <h4 className="login__head">
                     { ifUser ? signInHead : signUpHead }
                 </h4>
 
-                { ifUser ? <LoginForm /> : <Register /> }
+                { ifUser ? <LoginForm setLogin={ setLogin } /> : <Register onClick={ () => setCreateAccountMessage("") } setIfUser={ setIfUser } setCreateAccountMessage={ setCreateAccountMessage }/> }
                 <hr style={{ width: "100%", }} />
                 <div className="loginOptions">
                     <p 

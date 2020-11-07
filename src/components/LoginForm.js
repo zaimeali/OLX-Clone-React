@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 // Formik and Yup
 import { useFormik } from 'formik'
@@ -7,8 +7,54 @@ import * as Yup from 'yup'
 // Styling
 import '../App.css'
 
+// firebase
+import firebase from 'firebase'
+import '../firebase/firebase'
 
-export default function LoginForm() {
+// Redux
+import { useDispatch } from 'react-redux'
+
+// Redux Action
+import { loginSuccess } from '../redux/reducer'
+
+
+export const login = ({ user }) => async dispatch => {
+    try {
+        dispatch(loginSuccess(user))
+    }
+    catch (e) {
+        return console.error("Login Failed: ", e)
+    }
+}
+
+export default function LoginForm({ setLogin }) {
+
+    const dispatch = useDispatch()
+
+    const [loginError, setLoginError] = useState('')
+
+    let values = {
+        user: "zaime"
+    }
+
+    
+    const loggedInUserCheck = ({ email, password }, resetForm) => {
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(() => {
+                dispatch(login(values))
+                setLogin(false)
+                resetForm()
+            })
+            .catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log(errorMessage, errorCode)
+                setLoginError(errorMessage);
+                resetForm()
+            }
+        );
+    }
 
     const formik = useFormik({
         initialValues: {
@@ -23,15 +69,24 @@ export default function LoginForm() {
                 .required('Password is required')
                 .min(8, 'Password has to be longer than 8 characters!') ,
         }),
-        onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
+        onSubmit: (values, { resetForm }) => {
+            // alert(JSON.stringify(values, null, 2));
+            loggedInUserCheck(values, resetForm)
+            // console.log(values)
         },
     })
 
     return (
         <form 
             className="loginForm"
-            onSubmit={ formik.handleSubmit }
+            method="post"
+            onSubmit={ 
+                // formik.handleSubmit();
+                (e) => {
+                    e.preventDefault()
+                    formik.handleSubmit()
+                }
+            }
         >
             {/* <label htmlFor="email">Email Address</label> */}
             <input
@@ -62,15 +117,16 @@ export default function LoginForm() {
                 placeholder="Password"
             />
             { formik.touched.password && <div className="form-field-error">{ formik.errors.password }</div> }
-
+            <span className="loginError">{ loginError }</span>
             <button 
-                disabled={formik.isValid} 
+                // disabled={formik.isValid} 
                 type="submit" 
                 className={ 
                     `form__Btn ${
                         (formik.values.password.length && formik.values.email.length) ? 
                             'form_Btn_Active' : 'form_Btn_Disable'}` 
                 }
+                // onClick={ () => console.log("nice") }
             >Sign in</button>
         </form>
     )
