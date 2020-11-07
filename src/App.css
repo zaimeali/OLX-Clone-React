@@ -297,6 +297,7 @@
 
 .card__image {
   height: 150px;
+  object-fit: cover;
 }
 
 .card__body {
