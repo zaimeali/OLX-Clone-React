@@ -9,6 +9,10 @@ import { logoutSuccess } from '../redux/reducer'
 // Styles
 import '../App.css'
 
+// firebase
+import firebase from 'firebase'
+import '../firebase/firebase'
+
 
 export const logout = () => async dispatch => {
     try {
@@ -25,7 +29,13 @@ const PopUp = () => {
     const dispatch = useDispatch()
 
     return (
-        <button className="logOutBtn" onClick={ () => dispatch(logout()) }>
+        <button className="logOutBtn" onClick={ () => {
+            firebase.auth().signOut().then(function() {
+                dispatch(logout())
+              }).catch(function(error) {
+                console.error(error)
+              });
+        } }>
             Log out
         </button>
     )

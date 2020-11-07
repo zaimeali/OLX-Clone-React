@@ -33,17 +33,19 @@ export default function LoginForm({ setLogin }) {
 
     const [loginError, setLoginError] = useState('')
 
-    let values = {
-        user: "zaime"
-    }
-
     
     const loggedInUserCheck = ({ email, password }, resetForm) => {
         firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(() => {
-                dispatch(login(values))
+            .then((res) => {
+                // let values = {
+                //     user: res.user.displayName
+                // }
+                dispatch(login({
+                    user: res.user.displayName
+                }))
                 setLogin(false)
                 resetForm()
+                // console.log(res)
             })
             .catch(function(error) {
                 // Handle Errors here.

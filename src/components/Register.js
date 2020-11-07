@@ -16,12 +16,16 @@ export default function Register({ setIfUser, setCreateAccountMessage }) {
 
     const [registerError, setRegisterError] = useState('')
 
-    const registerUser = ({ email, password }, resetForm) => {
+    const registerUser = ({ email, password, username }, resetForm) => {
+        console.log(username)
         firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(() => {
+            .then((res) => {
                 setCreateAccountMessage("Created Successfully")
                 setIfUser(true);
                 resetForm()
+                res.user.updateProfile({
+                    displayName: username,
+                })
             })
             .catch(function(error) {
                 // Handle Errors here.
@@ -36,11 +40,14 @@ export default function Register({ setIfUser, setCreateAccountMessage }) {
 
     const formik = useFormik({
         initialValues: {
+            username: '',
             email: '',
             password: '', 
             confirmPassword: '',
         },
         validationSchema: Yup.object({
+            username: Yup.string()
+                .required('Username is required'),
             email: Yup.string()
                 .email('Invalid email address')
                 .required('Email is required'),
@@ -69,6 +76,19 @@ export default function Register({ setIfUser, setCreateAccountMessage }) {
                 
             } }
         >
+            <input 
+                className="form-fields" 
+                id="username"
+                name="username"
+                type="text"
+                onChange={ formik.handleChange }
+                // onBlur={ formik.handleBlur }
+                value={ formik.values.username }
+                required={ true }
+                placeholder="Username"
+            />
+            { formik.touched.username && <div className="form-field-error">{ formik.errors.username }</div> }   
+
             {/* <label htmlFor="email">Email Address</label> */}
             <input 
                 className="form-fields" 
